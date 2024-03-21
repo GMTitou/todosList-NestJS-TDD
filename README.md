@@ -5,12 +5,12 @@ development of a second project in nest js in Test Driven Development
 Yo Mec j'ai fait ça solo (Baptiste Pochebonne) est je suis quand meme deçu je ne dirais pas pk à toi de le decouvrir <3
 =======
 # Évaluation finale
-Pour ce test final vous allez être évalués sur votre maîtrise du framework NestJS. Ce projet, qu'il vous faudra dupliquer (fork), contient un certain nombre de tests automatisés. Chacun d'entre eux couvre une fonctionnalité spécifique : inscription, connexion, création d'une tâche, mise à jour d'une tâche etc.
+Pour ce test final vous allez être évalués sur votre maîtrise du framework NestJS. Ce projet, qui est une TodoList et qu'il vous faudra dupliquer (fork), contient un certain nombre de tests automatisés. Chacun d'entre eux couvre une fonctionnalité spécifique : création d'un utilisateur, création d'une tâche, vérification que le serveur renvoie une erreur dans tel ou tel cas etc.
 
 🎯 **Votre objectif est simple :** faire passer tous ces tests en implémentant vous-mêmes ces fonctionnalités.
 
 ## Critères
-Avant de rendre votre projet, vous devez vous assurer d'avoir respecté **3 critères obligatoires** :
+Avant de rendre votre projet, vous devez vous assurer d'avoir respecté **4 critères obligatoires** :
 
 ### 🚀 Le projet fonctionne
 * aucune erreur non gérée n'est jetée au runtime
@@ -19,16 +19,16 @@ Avant de rendre votre projet, vous devez vous assurer d'avoir respecté **3 crit
 | Contexte | Barème               |
 | ------------- | -------------------- |
 | Erreur au runtime       | -2 pts par erreur    |
-| Erreur au rompile time  | 0 immédiat           |
+| Erreur au compile time  | 0 immédiat           |
 
 
 ### 💾 Une BDD est utilisée
 * une base de données relationnelle ou noSQL est utilisée
-* un outil d'ORM est configuré dans un module et est utilisé
+* un ORM est configuré dans le `DatabaseModule` et est utilisé
 
 | Contexte | Barème    |
 | ------------- | -------------------- |
-| Pas de BDD    | -5 pts               |
+| Pas de BDD    | -7 pts               |
 | ORM différent de TypeORM et Mongoose | +2 pts |
 
 ### 🧹 Le code est clean
@@ -38,8 +38,22 @@ Votre code se doit d'être propre, compréhensible et convenablement segmenté.
 | ------------- | -------------------- |
 | les classes, méthodes, variables etc. sont mal nommées | -2 pts |
 | le code contient des commentaires jugés inutiles | -2 pts |
-| les contrôleurs contiennent autre chose que de la logique HTTP | -4 pts |
+| les contrôleurs contiennent autre chose que de la logique de validation/HTTP | -4 pts |
 | les services contiennent autre chose que de la logique métier | -4 pts |
+
+### 🚧 Pas de sur-configuration
+Assurez-vous que je n'ai **aucune configuration supplémentaire à faire**, si ce n'est :
+
+- d'installer les `node_modules` avec `npm ci`
+- de lancer les tests avec le script npm approprié
+- de lancer votre serveur avec le script npm approprié
+
+| Contexte | Barème               |
+| ------------- | -------------------- |
+| `npm ci` ne fonctionne pas      | 0 immédiat   |
+| le projet nécessite la moindre configuration supplémentaire | 0 immédiat |
+| le script npm de lancement des tests n'est pas indiqué dans le readme  | -5 pts |
+| le script npm de lancement du serveur n'est pas indiqué dans le readme  | -5 pts |
 
 ## Setup
 ### 🏗️ Initialisation
@@ -66,8 +80,16 @@ Pour pouvoir communiquer avec votre base de données depuis votre projet NestJS,
 * [Prisma](https://docs.nestjs.com/recipes/prisma)
 
 ### 🧪 Tests
+<<<<<<< HEAD
 Les tests utilisés pour vous noter sont localisés dans le dossier `test`. Considérez-les comme les spécifications du projet, vous n'aurez d'autre choix que de les respecter à la lettre. Chaque fichier de test concerne un module en particulier :
 - le fichier `auth.e2e-spec.ts` concerne le `AuthModule`
 - le fichier `task.e2e-spec.ts` concerne le `TaskModule`
 - le fichier `user.e2e-spec.ts` concerne le `UserModule`
 >>>>>>> fe14eb9 (setup final test project)
+=======
+Les tests utilisés pour vous noter sont localisés dans le dossier `test`. Considérez-les comme les spécifications du projet, vous n'aurez d'autre choix que de les respecter à la lettre.
+
+Pour lancer ces tests, utilisez le script npm de votre choix : `npm run test:e2e:mongodb` ou `npm run test:e2e:postgres` (ces scripts démarrent une base de données, puis lancent les tests e2e).
+
+NB : Pour les besoins de cette évaluation, vous noterez peut-être que le code des tests e2e n'est pas spécialement clean. Ne faites pas ça chez vous.
+>>>>>>> 14f8817 (Update README.md)
