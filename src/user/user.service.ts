@@ -1,18 +1,39 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { DatabaseService } from '../infrastructure/database/database.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
-    constructor() {}
+  constructor(private readonly database: DatabaseService) {}
 
-    addUser(email: string): Promise<void> {
-        throw new NotImplementedException();
-    }
+  async addUser(email: string): Promise<User> {
+    return this.database.user.create({
+      data: { email },
+    });
+  }
 
-    getUser(email: string): Promise<unknown> {
-        throw new NotImplementedException();
-    }
+  async getUser(email: string): Promise<User | null> {
+    return this.database.user.findUnique({
+      where: { email },
+    });
+  }
 
-    resetData(): Promise<void> {
-        throw new NotImplementedException();
+  async getUserById(userId: number): Promise<User | null> {
+    return this.database.user.findUnique({
+      where: { id: userId },
+    });
+  }
+
+  async resetData(): Promise<void> {
+    const users = await this.database.user.findMany();
+    for (const user of users) {
+      await this.database.task.deleteMany({
+        where: {
+          userId: user.id,
+        },
+      });
     }
+    await this.database.user.deleteMany();
+  }
+  
 }

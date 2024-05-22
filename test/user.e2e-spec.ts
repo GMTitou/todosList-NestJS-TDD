@@ -12,7 +12,7 @@ describe('UserController', () => {
         beforeEach(async () => {
             app = await createNestApplication();
             userService = app.get(UserService);
-
+            
             await app.init();
         });
 
